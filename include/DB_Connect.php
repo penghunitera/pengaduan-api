@@ -13,9 +13,15 @@ class DB_Connect {
         
         // Connecting to mysql database
         $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
-        
-        // return database handler
-        return $this->conn;
+
+        if (mysqli_connect_errno()) {
+            printf("Connect failed: %s\n", mysqli_connect_error());
+            exit();
+        }
+        else{
+            // return database handler
+            return $this->conn;
+        }
     }
 }
 
